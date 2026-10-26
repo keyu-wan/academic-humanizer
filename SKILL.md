@@ -1,14 +1,15 @@
 ---
 name: academic-humanizer
-version: 0.3.3
 description: |
   Improve the clarity and voice of AI-assisted academic writing (papers, theses, rebuttals) and
   funding proposals (NSF Project Summary/Description, NIH Specific Aims): preserve scholarly
   conventions, match claims to evidence (and, for proposals, claims to feasibility), and match the
-  author's own voice. It never changes a number, result, or citation, and it is not for evading
+  author's own voice, with a personal profile for remote-sensing and geospatial ML papers. It never changes a number, result, or citation, and it is not for evading
   AI-use disclosure. Use when editing AI-assisted academic prose or grant proposals.
 license: MIT
-compatibility: claude-code codex morphmind opencode
+metadata:
+  version: 0.3.3-personal.1
+  compatibility: claude-code codex morphmind opencode
 allowed-tools: [Read, Write, Edit, Grep, Glob, AskUserQuestion]
 ---
 
@@ -27,8 +28,15 @@ voice. One caveat for proposals: their register is different from a paper's, sin
 vision and feasibility, so the ambition language a paper would trim is appropriate there; apply Layer 6,
 not the paper layers' stricter trimming, to vision statements.
 
+## Personal voice calibration
+Before auditing the owner's manuscript, read [references/author-profile.md](references/author-profile.md).
+Use its domain distinctions and voice guidance throughout the edit. The current user request and
+current author samples take precedence. The personal profile qualifies generic stylistic heuristics
+below, especially sentence length, meaningful contrasts, technical triples, and paragraph structure;
+it does not relax scientific-content preservation. Do not infer grant-writing preferences from paper samples.
+
 ## Core principle
-Academic writing already has a correct human voice: neutral, precise, third-person plural ("we"), every
+Academic writing already has a correct human voice: neutral, precise, first-person plural ("we"), every
 claim tied to its evidence. The job is to (1) strip the AI *tells* without casualizing, and (2) enforce
 the discipline a general humanizer misses: **every claim earns its number, figure, or citation, and no
 verb is stronger than its evidence.**
@@ -42,8 +50,8 @@ verb is stronger than its evidence.**
 3. **Rewrite**: same structure and content, all claims and citations preserved, tells removed, over-claims
    matched to evidence, legitimate hedging kept.
 4. **Report**: cleaned text plus a short change log (patterns removed, claims softened or given evidence
-   pointers, voice notes). Cover everything the original covered: if it had five paragraphs, so does the
-   rewrite.
+   pointers, voice notes). Cover everything the original covered. Preserve paragraph structure for ordinary polishing;
+   follow explicit restructuring requests and explain material organization changes.
 
 ---
 
@@ -130,8 +138,9 @@ If it matters, the sentence shows it.
 
 ### 2.11 Overlong, clause-stacked sentences
 AI favors long sentences that chain three or four clauses with commas and "which", "that", "while", "with".
-Split them: one idea per sentence, and cut subordinate clauses that carry no weight. **Watch:** sentences
-past ~30 words, or with 3+ subordinate clauses.
+Split sentences when competing ideas or nested clauses obscure the argument, and cut subordinate
+clauses that carry no weight. Length alone is not a reason to split a clear conditional comparison;
+follow the personal profile when it applies.
 **Before:** *Existing methods, though promising, are largely empirical, with unclear principles
 underpinning their behavior, which limits their reliability and further progress.*
 **After:** *Existing methods stay empirical. Their principles are unclear, which limits reliability and
@@ -156,6 +165,9 @@ A general humanizer flattens legitimate scholarly constructs. Keep them.
 ---
 
 ## Layer 4: Claim-evidence discipline
+Examples below illustrate form only: never transfer their numbers, tests, citations, or figure pointers
+into a manuscript. Use supplied evidence; otherwise flag the missing support.
+
 For every empirical claim, check (a) is it backed by a number, figure, table, or citation in the text,
 and (b) does the verb match the strength of that evidence?
 
